@@ -14,6 +14,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const HomeStack = createStackNavigator();
 const ExchangeStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
+const SettingsStack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const MainTabScreen = () => {
@@ -46,7 +48,7 @@ const MainTabScreen = () => {
           />
           <Tab.Screen
             name="Profile"
-            component={ProfileScreen}
+            component={ProfileStackScreen}
             options={{
               tabBarLabel: 'Profile',
               tabBarColor: '#694fad',
@@ -57,7 +59,7 @@ const MainTabScreen = () => {
           />
           <Tab.Screen
             name="Settings"
-            component={SettingScreen}
+            component={SettingsStackScreen}
             options={{
               tabBarLabel: 'Settings',
               tabBarColor: '#d02860',
@@ -119,4 +121,51 @@ const ExchangeStackScreen = ({ navigation }) => (
         )
       }} />
     </ExchangeStack.Navigator>
+);
+const ProfileStackScreen = ({ navigation }) => (
+    <ProfileStack.Navigator screenOptions={{
+        headerStyle:{
+          backgroundColor: '#694fad'
+        },
+        headerTintColor: '#fff',
+      }}>
+      <ProfileStack.Screen name="Profile" component={ProfileScreen} options={{
+        title: 'Profile',
+        headerLeft: () => (
+          <Icon.Button 
+            name="ios-menu" 
+            size={25} 
+            backgroundColor='#694fad' 
+            onPress={() => {
+              navigation.openDrawer();
+              }}
+           >
+          </Icon.Button>
+        )
+      }} />
+    </ProfileStack.Navigator>
+);
+
+const SettingsStackScreen = ({ navigation }) => (
+    <SettingsStack.Navigator screenOptions={{
+        headerStyle:{
+          backgroundColor: '#d02860'
+        },
+        headerTintColor: '#fff',
+      }}>
+      <SettingsStack.Screen name="Setting" component={SettingScreen} options={{
+        title: 'Settings',
+        headerLeft: () => (
+          <Icon.Button 
+            name="ios-menu" 
+            size={25} 
+            backgroundColor='#d02860' 
+            onPress={() => {
+              navigation.openDrawer();
+              }}
+           >
+          </Icon.Button>
+        )
+      }} />
+    </SettingsStack.Navigator>
 );

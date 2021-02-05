@@ -20,15 +20,15 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icons from 'react-native-vector-icons/Ionicons';
 
+import { AuthContext } from '../components/context'
+
 export function DrawerContent(props){
 
-    // const paperTheme = useTheme();
-
-    // const { signOut, toggleTheme } = React.useContext(AuthContext);
+    const { signOut } = React.useContext(AuthContext);
 
     const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
-    const toggleTheme = () => {
+    const toggleTheme= () => {
         setIsDarkTheme(!isDarkTheme);
     }
 
@@ -120,7 +120,7 @@ export function DrawerContent(props){
                         <View style={styles.preference}>
                             <Text>Dark Theme</Text>
                             <View pointerEvents="none">
-                                <Switch value={isDarkTheme}/>
+                                <Switch value={isDarkTheme} />
                             </View>
                         </View>
                     </TouchableRipple>
@@ -137,7 +137,7 @@ export function DrawerContent(props){
                         />
                     )}
                     label="Sign Out"
-                    onPress={() => {}}
+                    onPress={() => {signOut()}}
                 />
             </Drawer.Section>
         </View>
